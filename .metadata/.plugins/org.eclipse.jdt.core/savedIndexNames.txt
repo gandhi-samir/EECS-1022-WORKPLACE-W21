@@ -1,5 +1,2 @@
 INDEX VERSION 1.131+/Users/samirgandhi/Desktop/YORK U/EECS 1022 - YORK U/EECS-1022-WORKPLACE-W21/.metadata/.plugins/org.eclipse.jdt.core
-2947690808.index
-3111507382.index
-1888644376.index
 564439505.index
