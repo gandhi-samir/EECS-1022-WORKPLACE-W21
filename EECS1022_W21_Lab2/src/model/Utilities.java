@@ -32,40 +32,141 @@ public class Utilities {
 		return result;
 	}
 	
-	/*
-	 * Input parameters:
-	 * 	- `p1` is the name of player 1
-	 *  - `p2` is the name of player 2
-	 *  - `p1r1` is what player 1 plays in round 1 ('R', 'P', or 'S')
-	 *  - `p2r1` is what player 2 plays in round 1 ('R', 'P', or 'S')
-	 *  - `p1r2` is what player 1 plays in round 2 ('R', 'P', or 'S')
-	 *  - `p2r2` is what player 2 plays in round 2 ('R', 'P', or 'S')
-	 *  
-	 * Assumptions:
-	 * 	- `p1r1`, `p2r1`, `p1r2`, or `p2r2` is one of the following characters:
-	 *     'R' for rock, 'P' for paper, and 'S' scissors (case-sensitive)
-	 *     
-	 * Hints:
-	 *  - Compare character values using the relational operator ==.
-	 *  - Study the 9 test cases in TestUtilites: they are arranged in a systematic (yet not exhaustive) way.
-	 *    Q. In order to exhaustively test this game, considering how two players may play in two rounds,
-	 *    	 how many tests do we need? (Optionally, you may write extra test yourself as an exercise.)
-	 *    
-	 * Refer to you lab instructions for what the method should return.
-	 */
 	public static String getRPSGameReport(String p1, String p2, char p1r1, char p2r1, char p1r2, char p2r2) {
 		String result = "";
+		int p1Score=0;
+		int p2Score=0;
+		String playerWin;
+		String roundWin  =null;
+		String round2Win = null;
+		String output1 = null;
+		String output2 = null;
 		
-		/* Your implementation of this method starts here. 
-		 * Recall from Week 1's tutorial videos:
-		 * 1. No System.out.println statements should appear here.
-		 * 	  Instead, an explicit, final `return` statement is placed for you.
-		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
-		 *    Instead, refer to the input parameters of this method.   
-		 */
+//round 1
+		
+		if (p1r1 == 'R' && p2r1 == 'S'){
+			roundWin = p1+" wins";
+			p1Score = p1Score+1;
+			output1 = "("+p1r1+" vs. "+p2r1+") ;";
+		}
+		
+		else if (p1r1 == 'R' && p2r1 == 'P'){
+			roundWin = p2+" wins";
+			p2Score = p2Score+1;
+			output1 = "("+p2r1+" vs. "+p1r1+") ;";
+		}
+		
+		else if (p1r1 == 'R' && p2r1 == 'R'){
+			roundWin = "Tie";	
+			output1 = "("+p1r1+" vs. "+p2r1+") ;";
+		}
+		
+		else if (p1r1 == 'P' && p2r1 == 'R'){
+			roundWin = p1+" wins";
+			p1Score = p1Score+1;
+			output1 = "("+p1r1+" vs. "+p2r1+") ;";
+		}
+		
+		else if (p1r1 == 'P' && p2r1 == 'P'){
+			roundWin = "Tie";
+			output1 = "("+p1r1+" vs. "+p2r1+") ;";
+		}
+		
+		else if (p1r1 == 'P' && p2r1 == 'S'){
+			roundWin = p2+" wins";
+			p2Score = p2Score+1;
+			output1 = "("+p2r1+" vs. "+p1r1+") ;";
+			
+		}
+		
+		else if (p1r1 == 'S' && p2r1 == 'R'){
+			roundWin = p2+" wins";
+			p2Score = p2Score+1;
+			output1 = "("+p2r1+" vs. "+p1r1+") ;";
+			
+		}
+		
+		else if (p1r1 == 'S' && p2r1 == 'P'){
+			roundWin = p1+" wins";
+			p1Score = p1Score+1;
+			output1 = "("+p1r1+" vs. "+p2r1+") ;";
+			
+		}
+		
+		else if (p1r1 == 'S' && p2r1 == 'S'){
+			roundWin = "Tie";
+			output1 = "("+p1r1+" vs. "+p2r1+") ;";
+		}
 		
 		
-		/* Your implementation ends here. */
+		
+//round 2
+		if (p1r2 == 'R' && p2r2 == 'S'){
+			round2Win = p1+" wins";
+			p1Score = p1Score+1;
+			output2 = " Round 2: "+round2Win+" ("+p1r2+" vs. "+p2r2+")]";
+			
+		}
+		
+		else if (p1r2 == 'R' && p2r2 == 'P'){
+			round2Win = p2+" wins";
+			p2Score = p2Score+1;
+			output2 = " Round 2: "+round2Win+" ("+p2r2+" vs. "+p1r2+")]";
+					
+		}
+		
+		else if (p1r2 == 'R' && p2r2 == 'R'){
+			round2Win = "Tie";
+			output2 = " Round 2: "+round2Win+" ("+p1r2+" vs. "+p2r2+")]";
+			
+		}
+		
+		else if (p1r2 == 'P' && p2r2 == 'R'){
+			round2Win = p1+" wins";
+			p1Score = p1Score+1;
+			output2 = " Round 2: "+round2Win+" ("+p1r2+" vs. "+p2r2+")]";
+		}
+		
+		else if (p1r2 == 'P' && p2r2 == 'P'){
+			round2Win = "Tie";
+			output2 = " Round 2: "+round2Win+" ("+p1r2+" vs. "+p2r2+")]";
+		}
+		
+		else if (p1r2 == 'P' && p2r2 == 'S'){
+			round2Win = p2+" wins";
+			p2Score = p2Score+1;
+			output2 = " Round 2: "+round2Win+" ("+p2r2+" vs. "+p1r2+")]";
+		}
+		
+		else if (p1r2 == 'S' && p2r2 == 'R'){
+			round2Win = p2+" wins";
+			p2Score = p2Score+1;
+			output2 = " Round 2: "+round2Win+" ("+p2r2+" vs. "+p1r2+")]";
+		}
+		
+		else if (p1r2 == 'S' && p2r2 == 'P'){
+			round2Win = p1+" wins";
+			p1Score = p1Score+1;
+			output2 = " Round 2: "+round2Win+" ("+p1r2+" vs. "+p2r2+")]";
+		}
+		
+		else if (p1r2 == 'S' && p2r2 == 'S'){
+			round2Win = "Tie";	
+			output2 = " Round 2: "+round2Win+" ("+p1r2+" vs. "+p2r2+")]";	
+		}
+		
+		if (p1Score>p2Score) {
+			playerWin = p1+" wins";
+		}
+		else if (p1Score<p2Score) {
+			playerWin = p2+" wins";
+		}
+		
+		else {
+			playerWin = "Tie";
+		}
+	result ="Game over: "+playerWin+"! [Round 1: "+roundWin+" "+output1+""+output2;
+		
 
 		return result;
 	}
