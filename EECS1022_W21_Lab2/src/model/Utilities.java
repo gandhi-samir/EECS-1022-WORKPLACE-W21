@@ -1,33 +1,89 @@
 package model;
 
 public class Utilities {
-	/*
-	 * Input parameters:
-	 * 	- `status` is the filing status (which should be 1 for Single Filing or 2 for Married Filing)
-	 *  - `income` is the tax payer's income (an integer value)
-	 *  
-	 * Assumptions:
-	 * 	- `income` passed by user is always positive (> 0)
-	 *  
-	 * Refer to you lab instructions for what the method should return.
-	 * 
-	 * See this short tutorial video illustrating how to compute tax:
-	 * https://www.youtube.com/watch?v=q2NT5x77hdg&list=PL5dxAmCmjv_7YgI2LgcwjWTHiNZSR-aQX&index=1 
-	 */
+	
 	public static String getTaxReport(int status, int income) {
-		String result = "";
-
-		/* Your implementation of this method starts here. 
-		 * Recall from Week 1's tutorial videos:
-		 * 1. No System.out.println statements should appear here.
-		 * 	  Instead, an explicit, final `return` statement is placed for you.
-		 * 2. No Scanner operations should appear here (e.g., input.nextInt()).
-		 *    Instead, refer to the input parameters of this method.   
-		 */
+		String result = null;
+		double taxableAmount;
+		int singleMaxValue1 = 8350;
+		int singleMaxValue2= 33950;
+		int singleDifference = singleMaxValue2 - singleMaxValue1;
+		int marriedMaxValue1=16700;
+		int marriedMaxValue2=67900;
+		int marriedDifference = marriedMaxValue2 - marriedMaxValue1;
+		double tax1;
+		double tax2;
+		double tax3;
 		
 		
-
-		/* Your implementation ends here. */
+// 1 single
+		if ( status == 1) {
+			
+			if (income < singleMaxValue1) {
+				taxableAmount = income*.10;
+				String formattedNumber = ""+String.format("%.2f", taxableAmount);
+				result ="Single Filing: $" +formattedNumber+" (Part I: $"+formattedNumber+")" ;
+			}
+			
+			else if (income < singleMaxValue2) {
+				tax1 = singleMaxValue1 * .10;
+				tax2 = (income - singleMaxValue1)*.15;
+				taxableAmount = tax1+tax2;
+				String formattedNumberTotal = ""+String.format("%.2f", taxableAmount);
+				String formattedNumber1 = ""+String.format("%.2f", tax1);
+				String formattedNumber2 = ""+String.format("%.2f", tax2);
+				result = "Single Filing: $" +formattedNumberTotal+" (Part I: $"+formattedNumber1+", Part II: $"+formattedNumber2+")" ;
+			}
+			
+			else if (income > singleMaxValue2) {
+				tax1 = singleMaxValue1 * .10;
+				tax2 = singleDifference*.15;
+				tax3 = (income - singleMaxValue2)*.25;
+				taxableAmount = tax1+tax2+tax3;
+				String formattedNumberTotal = ""+String.format("%.2f", taxableAmount);
+				String formattedNumber1 = ""+String.format("%.2f", tax1);
+				String formattedNumber2 = ""+String.format("%.2f", tax2);
+				String formattedNumber3 = ""+String.format("%.2f", tax3);
+				result = "Single Filing: $" +formattedNumberTotal+" (Part I: $"+formattedNumber1+", Part II: $"+formattedNumber2+", Part III: $"+formattedNumber3+")" ;
+			}
+		}
+		
+// 2 married
+		else if (status == 2) {
+			
+			if (income < marriedMaxValue1) {
+				taxableAmount = income*.10;
+				String formattedNumber = ""+String.format("%.2f", taxableAmount);
+				result ="Married Filing: $" +formattedNumber+" (Part I: $"+formattedNumber+")" ;
+			}
+			
+			else if (income < marriedMaxValue2) {
+				tax1 = marriedMaxValue1 * .10;
+				tax2 = (income - marriedMaxValue1)*.15;
+				taxableAmount = tax1+tax2;
+				String formattedNumberTotal = ""+String.format("%.2f", taxableAmount);
+				String formattedNumber1 = ""+String.format("%.2f", tax1);
+				String formattedNumber2 = ""+String.format("%.2f", tax2);
+				result = "Married Filing: $" +formattedNumberTotal+" (Part I: $"+formattedNumber1+", Part II: $"+formattedNumber2+")" ;
+			}
+			
+			else if (income > marriedMaxValue2) {
+				tax1 = marriedMaxValue1 * .10;
+				tax2 = marriedDifference*.15;
+				tax3 = (income - marriedMaxValue2)*.25;
+				taxableAmount = tax1+tax2+tax3;
+				String formattedNumberTotal = ""+String.format("%.2f", taxableAmount);
+				String formattedNumber1 = ""+String.format("%.2f", tax1);
+				String formattedNumber2 = ""+String.format("%.2f", tax2);
+				String formattedNumber3 = ""+String.format("%.2f", tax3);
+				result = "Married Filing: $" +formattedNumberTotal+" (Part I: $"+formattedNumber1+", Part II: $"+formattedNumber2+", Part III: $"+formattedNumber3+")" ;
+			}
+		}
+			
+		else if (status != 1 || status !=2) {
+			result = "Illegal Status: "+status;
+		}
+			
 
 		return result;
 	}
