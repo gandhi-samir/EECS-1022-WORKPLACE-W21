@@ -1,9 +1,5 @@
 package model;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 public class Utilities {
 	
 	public static String getNumbers(int lower, int upper) {
@@ -106,73 +102,40 @@ public class Utilities {
 		String sequence2="";
 		String interleaving="";
 		
-		if(n1<n2) {
-			for(int i =1;i<=n2;i++) {
+		for(int i =1; i <=n1|| i <=n2;i++) {
+			
+			if(i<=n1) {
+			
 				if (i ==1) {
-					sequence2 = ", "+(ft2+((i-1)*d2));
+				sequence1 = "("+(ft1+((i-1)*d1))+")";
 				}
 				else {
-					sequence2 =", "+(ft2+((i-1)*d2));
-					
+				sequence1 =", ("+(ft1+((i-1)*d1))+")";
 				}
-				for(int j =1; i <=n1;j++) {
-					if (j ==1) {
-						sequence1 = ""+(ft1+((j-1)*d1));
-					}
-					else {
-						sequence1 =", "+(ft1+((j-1)*d1));
-						
-					}
-			}
-				interleaving = interleaving +"("+sequence1+")"+"["+sequence2+"]";
-		}
+		    }
 			
-	
-	}
-		else if (n1>n2) {
-			for(int i =1;i<=n1;i++) {
-				if (i ==1) {
-					sequence1 = ""+(ft1+((i-1)*d1));
+			else {
+				sequence1="";
+			}
+			
+			if(i<=n2) {
+				if(n1==0 && i==1) {
+					sequence2 ="["+(ft2+((i-1)*d2))+"]";
 				}
 				else {
-					sequence1 =", "+(ft1+((i-1)*d1));
-					
+					sequence2 =", ["+(ft2+((i-1)*d2))+"]";	
 				}
-				for(int j =1; i <=n2;j++) {
-					if (j ==1) {
-						sequence2 = ""+(ft2+((j-1)*d2));
-					}
-					else {
-						sequence2 =", "+(ft2+((j-1)*d2));
-						
-					}
-			}
-				interleaving = interleaving +"("+sequence1+")"+"["+sequence2+"]";
-		}
+				
 			
-	
-	}
-		
-		else {
-		for(int i =1; i <=n1||i<=n2;i++) {
-			
-			
-			
-			if (i ==1) {
-				sequence1 = ""+(ft1+((i-1)*d1));
-				sequence2 = ", "+(ft2+((i-1)*d2));
 			}
 			else {
-				sequence1 =", "+(ft1+((i-1)*d1));
-				sequence2 =", "+(ft2+((i-1)*d2));
-				
-					}
-			interleaving = interleaving +"("+sequence1+")"+"["+sequence2+"]";
+				sequence2="";
 			}
-		
-			}
-		result = interleaving;
-		
+			
+			interleaving = interleaving+sequence1+sequence2;
+		}
+	
+		result ="<"+ interleaving+">";
 		return result;
-		}	
 	}
+}
