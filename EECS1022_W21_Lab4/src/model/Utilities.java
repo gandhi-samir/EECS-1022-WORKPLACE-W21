@@ -62,7 +62,7 @@ public class Utilities {
 		String[] result = null;
 		result = new String[numbers.length];
 		String num ="[";
-		String removed = "";
+	
 		
 	
 			
@@ -71,21 +71,12 @@ public class Utilities {
 		
 		
 		for (int i = 0; i< numbers.length;i++) {
-			
-				num+=numbers[i]+",";	
-				
-			
-			
-			
-			for (int j = 1; j< numbers.length;j++) {
-				
+				num+=numbers[i];	
 				result[i]=num+"]";
-		
-		
-			}
+				if(i<numbers.length-1) {
+				num+=", ";
+				}
 		}
-		
-		result[0]="["+numbers[0]+"]";	
 		return result;
 	}
 	
