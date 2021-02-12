@@ -63,13 +63,6 @@ public class Utilities {
 		result = new String[numbers.length];
 		String num ="[";
 	
-		
-	
-			
-		
-		
-		
-		
 		for (int i = 0; i< numbers.length;i++) {
 				num+=numbers[i];	
 				result[i]=num+"]";
