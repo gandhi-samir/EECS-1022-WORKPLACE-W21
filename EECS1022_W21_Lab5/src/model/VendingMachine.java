@@ -15,7 +15,6 @@ public class VendingMachine {
 	
 	
 	public String checkStock(String food) {
-	this.food = food;
 	
 	if (food == "Coke") {
 		Stock = food+" ("+Coke+")";
