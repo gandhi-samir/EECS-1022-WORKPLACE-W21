@@ -33,7 +33,7 @@ public class VendingMachine {
 		Stock = food+" ("+LaysClassicChips+")";
 	}
 	
-	else if (food != "Coke" || food != "Oramje Juice" || food != "Lay's Classic Chips"|| food != "Kitkat Chunky Bar") { 
+	else if (food != "Coke" || food != "Orange Juice" || food != "Lay's Classic Chips"|| food != "Kitkat Chunky Bar") { 
 		Stock ="Invalid product: " +food;
 	}
 	
@@ -75,7 +75,7 @@ public class VendingMachine {
 			Status = "Product added: Lay's Classic Chips ("+quantity+")";
 		}
 		
-		else if (food != "Coke" || food != "Oramje Juice" || food != "Lay's Classic Chips"|| food != "Kitkat Chunky Bar") { 
+		else if (food != "Coke" || food != "Orange Juice" || food != "Lay's Classic Chips"|| food != "Kitkat Chunky Bar") { 
 			Status ="Invalid product: " +food;
 		}
 
@@ -104,7 +104,7 @@ public class VendingMachine {
 			Status = "Product removed: Lay's Classic Chips ("+quantity+")";
 		}
 		
-		else if (food != "Coke" || food != "Oramje Juice" || food != "Lay's Classic Chips"|| food != "Kitkat Chunky Bar") { 
+		else if (food != "Coke" || food != "Orange Juice" || food != "Lay's Classic Chips"|| food != "Kitkat Chunky Bar") { 
 			Status ="Invalid product: " +food;
 		}
 
