@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import model.Registration;
+import model.Instructor;
+import model.Participant;
+import model.OnlineSchool;
+
 /*
  * Requirement: Any classes you create must reside in the `model` package and be imported properly.
  * For example, creating a new class `Foo` in the `model` package should result in:
@@ -96,6 +101,7 @@ public class TestOnlineSchool {
 		
 		Instructor jackie = new Instructor("Jackie", 70130, "jackie@eecs.yorku.ca");
 		r.setInstructor(jackie); 
+		
 		
 		assertEquals("Software Design", r.getTitle());
 		assertEquals(0, r.getMarks()); 
