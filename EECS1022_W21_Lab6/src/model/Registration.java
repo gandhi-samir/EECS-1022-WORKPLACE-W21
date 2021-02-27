@@ -19,8 +19,9 @@ public class Registration {
 	}
 
 
-	public Registration(String string, Instructor instructor2) {
-		// TODO Auto-generated constructor stub
+	public Registration(String title, Instructor instructor) {
+		this.title=title;
+		this.instructor = instructor;
 	}
 
 

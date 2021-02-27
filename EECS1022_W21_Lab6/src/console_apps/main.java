@@ -1,19 +1,26 @@
 package console_apps;
 import model.Instructor;
+import model.Participant;
 import model.Registration;
 public class main {
 
+
 	public static void main(String[] args) {
-		
-		Registration r = new Registration("your mom");
-		
-		Instructor jackie = new Instructor("Jackie", 70130, "jackie@eecs.yorku.ca");
-		r.setInstructor(jackie); 
+		Instructor alan = new Instructor("A. Wassyng", 70130, "jackie@eecs.yorku.ca");
+		Registration r1 = new Registration("Intro. to OOP", alan);
+		Registration r2 = new Registration("no", alan);
+		Registration r3 = new Registration("yes", alan);
+	
+		Participant suyeon = new Participant("S. Y. Lee"); 
+		suyeon.addRegistration(r1);
+		suyeon.addRegistration(r2);
+		suyeon.addRegistration(r3);
+		suyeon.addRegistration("hi");
 		
 
-		
-		String[] gr = r.getGradeReport();
-		System.out.println(gr[1]);
+
+		System.out.println(suyeon.marksOf("yes"));
+				
 	
 
 	}
