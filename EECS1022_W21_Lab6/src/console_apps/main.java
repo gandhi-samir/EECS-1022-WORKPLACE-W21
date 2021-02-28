@@ -7,19 +7,23 @@ public class main {
 
 	public static void main(String[] args) {
 		Instructor alan = new Instructor("A. Wassyng", 70130, "jackie@eecs.yorku.ca");
-		Registration r1 = new Registration("Intro. to OOP", alan);
-		Registration r2 = new Registration("no", alan);
-		Registration r3 = new Registration("yes", alan);
-	
+		Instructor mark = new Instructor("M. Lawford", 70139, "jonathan@yorku.ca");
+		 
 		Participant suyeon = new Participant("S. Y. Lee"); 
+		Registration[] suyeonRegistrations = suyeon.getRegistrations();
+		String report = suyeon.getGPAReport();
+		Registration r1 = new Registration("Intro. to OOP", alan);
 		suyeon.addRegistration(r1);
-		suyeon.addRegistration(r2);
-		suyeon.addRegistration(r3);
-		suyeon.addRegistration("hi");
+		suyeon.addRegistration("Heavy Metal Music");
 		
-
-
-		System.out.println(suyeon.marksOf("yes"));
+		
+		suyeon.updateMarks("Intro. to OOP", 61);
+		System.out.println(suyeon.getRegistrations()[0].getMarks());
+		System.out.println(suyeon.getRegistrations()[1].getMarks());
+		System.out.println(suyeon.marksOf("Intro. to OOP"));
+		System.out.println(suyeon.marksOf("Heavy Metal Music"));
+		//System.out.println(suyeon.marksOf(suyeon.getRegistrations()[0].getTitle()));
+		System.out.println(suyeon.getGPAReport());
 				
 	
 

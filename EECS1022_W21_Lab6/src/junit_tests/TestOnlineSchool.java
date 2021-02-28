@@ -191,6 +191,7 @@ public class TestOnlineSchool {
 		/* GPA undefined over an empty list of registrations */
 		assertEquals("No GPA available yet for S. Y. Lee", report);
 		/* non-registered courses have default marks -1 */
+		
 		assertTrue(suyeon.marksOf("Intro. to OOP") == -1);
 		assertTrue(suyeon.marksOf("Heavy Metal Music") == -1);
 		assertTrue(suyeon.marksOf("Psychology I") == -1); 
