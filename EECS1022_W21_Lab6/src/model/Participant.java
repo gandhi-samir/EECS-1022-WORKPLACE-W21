@@ -5,7 +5,6 @@ public class Participant {
 	Registration [] registration = new Registration[5];
 	Registration [] classRegistartion;
 	Object [] numberMarks = new Object[5];
-	
 	Registration registrationAdd;
 	String name ="";
 	String report="";
@@ -68,9 +67,10 @@ public class Participant {
 			
 			for (int i = 0; i < getRegistrations().length;i++) {
 				if( numberMarks[i]==null) {
-					numberMarks[i]=0;
-							gpa[i]=0;
-							letterMark[i] = "F";
+					
+						gpa[i]=0;
+						letterMark[i] ="F";
+							
 					
 				}
 				
@@ -116,10 +116,12 @@ public class Participant {
 					}
 					
 					
+					
+					
 				marksOutput+= (int) gpa[i]+" ("+letterMark[i]+")";	
 					
 				
-				
+					
 				
 				
 				average += (int) gpa[i];
@@ -128,7 +130,7 @@ public class Participant {
 				
 				
 			average=average/getRegistrations().length;	
-			report = name+"'s GPA of {"+marksOutput+"}: "+average;
+			report = name+"'s GPA of {"+marksOutput+"}: "+String.format("%.1f", average);
 			}
 			
 			

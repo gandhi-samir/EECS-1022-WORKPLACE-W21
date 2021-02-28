@@ -1,17 +1,30 @@
 package model;
 
 public class OnlineSchool {
+	
+	Participant [] list;
+	int participantCounter = 0;
+	
+	Participant particiapant;
 
-	public Participant[] getParticipants(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public Participant[] getParticipants(String classes) {
+	
+		return list;
 	}
 
-	public void addParticipant(Participant mark) {
-		// TODO Auto-generated method stub
+	public void addParticipant(Participant name) {
+		if(participantCounter <101) {
+			this.particiapant = name;
+			list[participantCounter]= particiapant;
+			participantCounter++;
+		
+			
+			
+		}
 		
 	}
 
+	
 
 		
 	
