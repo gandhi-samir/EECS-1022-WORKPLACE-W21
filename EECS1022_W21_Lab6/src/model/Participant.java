@@ -4,6 +4,7 @@ public class Participant {
 	int classCounter = 0;
 	Registration [] registration = new Registration[5];
 	Registration [] classRegistartion;
+	Object [] numberMarks = new Object[5];
 	
 	Registration registrationAdd;
 	String name ="";
@@ -16,6 +17,8 @@ public class Participant {
 	String mark = "F";
 	String grade = "Failing";
 	int gradePoint = 0;
+	double average = 0.0;
+	int markcount = -1;
 	
 
 	public Participant(String name) {
@@ -24,9 +27,9 @@ public class Participant {
 	}
 
 	public Registration[] getRegistrations() {
-		if(registration == null) {
-			 registration = new Registration[0];
-		}
+		//if(registration == null) {
+			// registration = new Registration[0];
+		//}
 		if(registration != null) {
 			for(int i = 0; i < registration.length;i++) {
 				if(registration[i]!= null) {
@@ -48,77 +51,123 @@ public class Participant {
 	}
 
 	public String getGPAReport() {
+		Object [] gpa = new Object [5];
+		String [] letterMark = new String[5];
 		if (getRegistrations().length == 0) {
+			
 			report = "No GPA available yet for "+name;
 		}
-		else {
+		
+		
+		
+		
+		else if (getRegistrations().length !=0) {
 			
 			//"S. Y. Lee's GPA of {0 (F), 0 (F)}: 0.0"
-			report = name+"'s GPA of {";
-			for(int i = 0; i<getRegistrations().length;i++) {
-				if(marksOf(getRegistrations()[i].getTitle()) < 49) {
-					mark = "F";
-					grade = "Failing";
-					gradePoint = 0;
-					}
-					if(marksOf(getRegistrations()[i].getTitle()) <=59&& marksOf(getRegistrations()[i].getTitle()) >=50) {
-						mark = "D";
-						grade = "Passing";
-						gradePoint = 5;
-
-						}
-					if(marksOf(getRegistrations()[i].getTitle()) <=69&& marksOf(getRegistrations()[i].getTitle()) >=60) {
-						mark = "C";
-						grade = "Competent";
-						gradePoint = 6;
-						}
-					if(marksOf(getRegistrations()[i].getTitle()) <=79&& marksOf(getRegistrations()[i].getTitle()) >=70) {
-						mark = "B";
-						grade = "Good";
-						gradePoint = 7;
-						}
-					if(marksOf(getRegistrations()[i].getTitle()) <=89&& marksOf(getRegistrations()[i].getTitle()) >=80) {
-						mark = "A";
-						grade = "Excellent";
-						gradePoint = 8;
-						}
-					if(marksOf(getRegistrations()[i].getTitle()) >89) {
-						mark = "A+";
-						grade = "Exceptional";
-						gradePoint = 9;
-						}
-					if(i>0) {
-						marksOutput+=",";
-					}
-				marksOutput+= gradePoint+" ("+mark+")";
+			
+			
+			for (int i = 0; i < getRegistrations().length;i++) {
+				if( numberMarks[i]==null) {
+					numberMarks[i]=0;
+							gpa[i]=0;
+							letterMark[i] = "F";
+					
+				}
 				
+				
+				
+				if( numberMarks[i]!=null) {
+				
+				if((int) numberMarks[i] <=49&& (int) numberMarks[i]>=0) {
+					letterMark[i] = "F";
+					gpa[i]= 0;
+					}
+					if((int) numberMarks[i] <=59&& (int) numberMarks[i]>=50) {
+						letterMark[i] = "D";
+						gpa[i]= 5;
+					
+						}
+					if((int) numberMarks[i]<=69&& (int) numberMarks[i] >=60) {
+						letterMark[i] = "C";
+								gpa[i]= 6;
+						}
+					if((int) numberMarks[i] <=79&&(int) numberMarks[i] >=70) {
+						letterMark[i] = "B";
+								gpa[i]= 7;
+						}
+					if((int) numberMarks[i] <=89&& (int) numberMarks[i] >=80) {
+						letterMark[i] = "A";
+								gpa[i]= 8;
+						}
+					if((int) numberMarks[i] >89) {
+						letterMark[i] = "A+";
+								gpa[i]= 9;
+						}
+					
+				
+				
+					
+				
+				}
+				
+				
+					if(i>0) {
+						marksOutput+=", ";
+					}
+					
+					
+				marksOutput+= (int) gpa[i]+" ("+letterMark[i]+")";	
+					
+				
+				
+				
+				
+				average += (int) gpa[i];
+					
+				}
+				
+				
+			average=average/getRegistrations().length;	
+			report = name+"'s GPA of {"+marksOutput+"}: "+average;
 			}
-		}
+			
+			
+			
+			
+				
+					
+				
+				
+			
+		
 		return report;
 	}
 
 	public int marksOf(String classTaken) {
 		this.classTaken = classTaken;
-		int result = -1;
-		if (getRegistrations().length==0) {
-			result=-1;	
+		int result=-1;
+		
+		
+		for (int i = 0; i < getRegistrations().length;i++) {
+			
+			if (getRegistrations()[i].getTitle()== classTaken) {
+				if(numberMarks[i]==null) {
+				result = 0;
+				}
+				else {
+					result = (int) numberMarks[i];
+				}
+			}
+			
 		}
 		
-		else if (getRegistrations().length >0) {
-		for (int i =0; i < getRegistrations().length;i++) {
-			if (getRegistrations()[i].getTitle()!= classTaken) {
-				result = -1;
-			}
+		
+		
+		
+	
+		
 			
-			
-				else if (getRegistrations()[i].getTitle()== classTaken) {
-					result = marks;
-				i = getRegistrations().length;
-			}
-		}
-			
-			
-		}
+
 		
 		return result;
 	}
@@ -149,10 +198,10 @@ public class Participant {
 	public void updateMarks(String className, int mark) {
 		for (int i =0; i < getRegistrations().length;i++) {
 		if (getRegistrations()[i].getTitle()== className) {
-			this.marks=mark;
-			marksOf(className);
+			numberMarks[i]=mark;
 			
 			
+			getRegistrations()[i].setMarks(mark);
 		}
 		
 		}
@@ -161,8 +210,11 @@ public class Participant {
 	}
 
 	public void clearRegistrations() {
-		// TODO Auto-generated method stub
+		for (int i = 0;i < 5; i++) {
+		this.registration[i]=null;
 		
+		}
 	}
-	
+		
 }
+	

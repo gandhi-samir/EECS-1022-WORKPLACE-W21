@@ -236,6 +236,8 @@ public class TestOnlineSchool {
 		assertTrue(suyeon.marksOf("Intro. to OOP") == 61);
 		assertTrue(suyeon.marksOf("Heavy Metal Music") == 79);
 		assertTrue(suyeon.marksOf("Psychology I") == -1);
+		
+		
 		/* GPA = sum of GPs divided by number of courses */
 		assertEquals("S. Y. Lee's GPA of {6 (C), 7 (B)}: 6.5", suyeon.getGPAReport()); 
 		
