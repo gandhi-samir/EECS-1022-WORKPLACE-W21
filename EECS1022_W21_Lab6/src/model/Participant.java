@@ -12,11 +12,11 @@ public class Participant {
 	int marks=0;
 	boolean didRegisterClass = true;
 	int counter = 0;
-	String marksOutput="";
+	
 	String mark = "F";
 	String grade = "Failing";
 	int gradePoint = 0;
-	double average = 0.0;
+	
 	int markcount = -1;
 	
 
@@ -49,7 +49,10 @@ public class Participant {
 		return classRegistration;
 	}
 
+	
 	public String getGPAReport() {
+		String marksOutput="";
+		double average = 0.0;
 		Object [] gpa = new Object [5];
 		String [] letterMark = new String[5];
 		if (getRegistrations().length == 0) {
