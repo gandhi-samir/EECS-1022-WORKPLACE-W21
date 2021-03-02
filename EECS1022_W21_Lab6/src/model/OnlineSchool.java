@@ -2,27 +2,40 @@ package model;
 
 public class OnlineSchool {
 	
-	Participant [] list;
+	Participant [] list = new Participant[100];
 	int participantCounter = 0;
-	
-	Participant particiapant;
+	int counter=0;
+	int classCounter=0;
+	Participant  [] emptyClassList = new Participant [0];
+	Participant [] classList;
+	Participant [] classNameList;
 
 	public Participant[] getParticipants(String classes) {
-	
-		return list;
+			
+			
+				
+				
+			
+	return list;
+			
 	}
+	
 
 	public void addParticipant(Participant name) {
-		if(participantCounter <101) {
-			this.particiapant = name;
-			list[participantCounter]= particiapant;
+		if(participantCounter <100) {
+			
+			list[participantCounter] = name;
 			participantCounter++;
 		
 			
 			
 		}
 		
+		
+		
 	}
+	
+	
 
 	
 

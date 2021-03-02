@@ -1,13 +1,12 @@
 package junit_tests;
 
 import static org.junit.Assert.*;
-
-import org.junit.Test;
-
 import model.Registration;
 import model.Instructor;
-import model.Participant;
 import model.OnlineSchool;
+import model.Participant;
+
+import org.junit.Test;
 
 /*
  * Requirement: Any classes you create must reside in the `model` package and be imported properly.
@@ -102,7 +101,6 @@ public class TestOnlineSchool {
 		Instructor jackie = new Instructor("Jackie", 70130, "jackie@eecs.yorku.ca");
 		r.setInstructor(jackie); 
 		
-		
 		assertEquals("Software Design", r.getTitle());
 		assertEquals(0, r.getMarks()); 
 		assertTrue(r.getInstructor() != null 
@@ -191,7 +189,6 @@ public class TestOnlineSchool {
 		/* GPA undefined over an empty list of registrations */
 		assertEquals("No GPA available yet for S. Y. Lee", report);
 		/* non-registered courses have default marks -1 */
-		
 		assertTrue(suyeon.marksOf("Intro. to OOP") == -1);
 		assertTrue(suyeon.marksOf("Heavy Metal Music") == -1);
 		assertTrue(suyeon.marksOf("Psychology I") == -1); 
@@ -236,10 +233,9 @@ public class TestOnlineSchool {
 		assertTrue(suyeon.marksOf("Intro. to OOP") == 61);
 		assertTrue(suyeon.marksOf("Heavy Metal Music") == 79);
 		assertTrue(suyeon.marksOf("Psychology I") == -1);
-		
-		
 		/* GPA = sum of GPs divided by number of courses */
 		assertEquals("S. Y. Lee's GPA of {6 (C), 7 (B)}: 6.5", suyeon.getGPAReport()); 
+		
 		
 		Participant yuna = new Participant("Y. Lee");
 		yuna.addRegistration(new Registration("Heavy Metal Music", mark));
@@ -380,8 +376,8 @@ public class TestOnlineSchool {
 		/* non-existing course */
 		assertTrue(school.getParticipants("How to Make Fish and Chips").length == 0);
 	}
+}
 	
 	/* You may want to write a test similar to test03b: 
 	 * an online school can be added up to 100 participants. 
 	 */
-}
