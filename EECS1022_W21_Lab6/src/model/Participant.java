@@ -123,11 +123,23 @@ public class Participant {
 		for (int i = 0; i < getRegistrations().length; i++) {
 
 			if (getRegistrations()[i].getTitle() == classTaken) {
-				if (numberMarks[i] == null) {
-					result = 0;
-				} else {
-					result = (int) numberMarks[i];
+				
+				int z = getRegistrations()[i].getMarks();
+				if(z>=0) {
+					result = z;
+			
 				}
+				else {
+					result =0;
+				}
+					
+				
+				
+				//if (numberMarks[i] == null) {
+				//	result = 0;
+				//} else {
+				//	result = (int) numberMarks[i];
+				//}
 			}
 
 		}
@@ -136,21 +148,13 @@ public class Participant {
 	}
 
 	public void addRegistration(Registration r1) {
-		boolean isEntered = false;
+		
 
 		this.registrationAdd = r1;
 
-		for (int i = 0; i < registration.length; i++) {
-			if (registration[i] != null) {
+		
 
-				if (registration[i].getTitle().equals(registrationAdd.getTitle())) {
-					isEntered = true;
-					break;
-				}
-			}
-		}
-
-		if (isEntered == false && classCounter < 5) {
+		if ( classCounter < 5) {
 			registration[classCounter] = registrationAdd;
 			classCounter++;
 		}
@@ -180,10 +184,10 @@ public class Participant {
 
 		}
 	}
-	
-	public  String getName() {
+
+	public String getName() {
 		return name;
-		
+
 	}
 
 }
