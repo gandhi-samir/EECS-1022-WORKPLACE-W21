@@ -9,6 +9,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import eecs1022.lab7.bank.model.Bank;
+import eecs1022.lab7.bank.model.Client;
+import eecs1022.lab7.bank.model.Transaction;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         String string = spinner.getSelectedItem().toString();
         return string;
     }
+
+
 
     /* Hints on controller methods:
      *
