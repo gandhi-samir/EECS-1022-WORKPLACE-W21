@@ -1,12 +1,13 @@
 package eecs1022.lab7.bank.model;
 
 public class Bank {
+
     String status ="";
     int clientCounter=0;
 
 
-   Client [] clientList= new Client[6];
-   String [] stm;
+    Client [] clientList= new Client[6];
+    String [] stm;
 
 
     public String getStatus() {
@@ -17,10 +18,10 @@ public class Bank {
                     status += clientList[i].getStatus();
 
 
-                        if (i >= 0 && i < clientCounter-1) {
-                            status = status + ", ";
+                    if (i >= 0 && i < clientCounter-1) {
+                        status = status + ", ";
 
-                        }
+                    }
 
 
                 }
@@ -110,12 +111,12 @@ public class Bank {
         else {
             status="";
             for (int i = 0; i < clientList.length; i++) {
-                if (clientList[i].getName().equals(fromName)&&clientList[i]!=null) {
+                if (clientList[i]!=null&&clientList[i].getName().equals(fromName)) {
                     clientList[i].withdraw(amount);
                 }
             }
             for (int k = 0; k < clientList.length; k++) {
-                if (clientList[k].getName().equals(toName)&&clientList[k]!=null) {
+                if (clientList[k]!=null&&clientList[k].getName().equals(toName)) {
                     clientList[k].deposit(amount);
                 }
             }
@@ -134,14 +135,48 @@ public class Bank {
         else if(clientCounter>=5){
             status="Error: Maximum Number of Accounts Reached";
         }
-         else if(isClient(name) == true){
-             status="Error: Client "+name+" already exists";
+        else if(isClient(name) == true){
+            status="Error: Client "+name+" already exists";
         }
-         else if(amount <0){
-             status="Error: Non-Positive Initial Balance";
+        else if(amount <0){
+            status="Error: Non-Positive Initial Balance";
         }
 
 
+    }
+    public void addClient(Client client, double amount) {
+
+        if(clientCounter <6&& isClient(client.getName())==false&&amount>0){
+            status="";
+
+            clientList[clientCounter]=client;
+            clientCounter++;
+        }
+
+        else if(clientCounter>=5){
+            status="Error: Maximum Number of Accounts Reached";
+        }
+        else if(isClient(client.getName()) == true){
+            status="Error: Client "+client.getName()+" already exists";
+        }
+        else if(amount <0){
+            status="Error: Non-Positive Initial Balance";
+        }
+
+
+    }
+
+    public Client getClient(String name){
+        Client client = null;
+        for(int i = 0; i < clientList.length;i++){
+            if(clientList[i].getName().equals(name)){
+                client = clientList[i];
+                break;
+            }
+
+
+        }
+        return client;
     }
 
 
@@ -176,3 +211,4 @@ public class Bank {
     }
 
 }
+

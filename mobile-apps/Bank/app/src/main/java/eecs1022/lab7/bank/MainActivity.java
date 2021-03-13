@@ -10,12 +10,11 @@ import android.widget.TextView;
 
 import eecs1022.lab7.bank.model.Bank;
 import eecs1022.lab7.bank.model.Client;
-import eecs1022.lab7.bank.model.Transaction;
 
 public class MainActivity extends AppCompatActivity {
 
     /* Hint: How do you share the same bank object between button clicks (attached with controller methods) of the app? */
-
+    Bank b = new Bank();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         /* Hint: How do you initialize an empty bank and displays its status to the output textview
          * when the app is first launched?
          */
+
+        String startingStatus = b.getStatus();
+        setContentsOfTextView(R.id.statusOutput,startingStatus);
+
     }
 
     /* this mutator sets the output label */
@@ -48,6 +51,93 @@ public class MainActivity extends AppCompatActivity {
         String string = spinner.getSelectedItem().toString();
         return string;
     }
+
+    public void newClient(View view){
+        String newName = getInputOfTextField(R.id.nameInput);
+        String startingBal = getInputOfTextField(R.id.startingBalanceInput);
+        if(newName.equals("")||startingBal.equals("")){
+            setContentsOfTextView(R.id.statusOutput,"Enter Valid Values");
+        }
+        else {
+            double amount = Double.parseDouble(startingBal);
+            Client c1 = new Client(newName, amount);
+            b.addClient(c1, amount);
+            setContentsOfTextView(R.id.statusOutput, b.getStatus());
+        }
+    }
+
+    public void processTransaction(View view) {
+
+        String money = "";
+        String option = getItemSelected(R.id.transactionSelect);
+
+
+
+        if (option.equals("Deposit") ) {
+            String to = getInputOfTextField(R.id.toInput);
+            money = getInputOfTextField(R.id.amountInput);
+            if (to.equals("") || money.equals("")) {
+                setContentsOfTextView(R.id.statusOutput, "Enter Valid Values");
+            } else {
+                double amount = Double.parseDouble(money);
+               // Client client = b.getClient(to);
+                b.deposit(to, amount);
+                setContentsOfTextView(R.id.statusOutput, b.getStatus());
+            }
+        }
+
+        if (option.equals("Withdraw")) {
+            String from = getInputOfTextField(R.id.fromInput);
+            money = getInputOfTextField(R.id.amountInput);
+            if (from.equals("") || money.equals("")) {
+                setContentsOfTextView(R.id.statusOutput, "Enter Valid Values");
+            } else {
+                double amount = Double.parseDouble(money);
+                //Client client = b.getClient(from);
+                b.withdraw(from, amount);
+
+                setContentsOfTextView(R.id.statusOutput, b.getStatus());
+            }
+        }
+
+        if (option.equals("Transfer")) {
+
+            String from = getInputOfTextField(R.id.fromInput);
+            String to = getInputOfTextField(R.id.toInput);
+            money = getInputOfTextField(R.id.amountInput);
+            if (to.equals("") || money.equals("") || from.equals("")) {
+                setContentsOfTextView(R.id.statusOutput, "Enter Valid Values");
+            } else {
+                double amount = Double.parseDouble(money);
+                b.transfer(from, to, amount);
+                //Client client = b.getClient(to);
+                setContentsOfTextView(R.id.statusOutput, b.getStatus());
+            }
+        }
+
+        if (option.equals("Print Statement")) {
+            String from = getInputOfTextField(R.id.fromInput);
+            if (from.equals("")) {
+                setContentsOfTextView(R.id.statusOutput, "Enter Valid Values");
+            } else {
+                String statment = "";
+                String [] stm =  b.getStatement(from);
+                if(stm==null) {
+                    statment = b.getStatus();
+                }
+                else {
+                    for (int i = 0; i < b.getStatement(from).length; i++) {
+                        statment += b.getStatement(from)[i] + ", ";
+
+                    }
+                }
+
+                setContentsOfTextView(R.id.statusOutput, statment);
+
+            }
+        }
+    }
+
 
 
 

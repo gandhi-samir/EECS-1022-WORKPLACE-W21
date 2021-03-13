@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import eecs1022.lab7.bank.model.*;
+import eecs1022.lab7.bank.model.*; /* import all classes from the model package */
 
 public class Tests {
 

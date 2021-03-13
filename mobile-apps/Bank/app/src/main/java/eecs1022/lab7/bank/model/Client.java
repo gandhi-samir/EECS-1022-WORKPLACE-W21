@@ -5,6 +5,8 @@ public class Client {
     double amount=0;
     String[] stm;
     String status="";
+
+
     public Client(String name, double amount) {
         this.name=name;
         this.amount=amount;
