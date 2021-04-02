@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import eecs1022.lab8.tictactoe.model.Game;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,15 +17,20 @@ public class MainActivity extends AppCompatActivity {
     /* Hint: How do you share the same game object between button clicks
      * (attached with controller methods) of the app?
      */
+    Game game = new Game("","");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
         /* Hint: How do you display the initial status to the output textview
          * when the app is first launched?
          */
+
     }
 
     /* this mutator sets the output label */
@@ -48,6 +55,36 @@ public class MainActivity extends AppCompatActivity {
         String string = spinner.getSelectedItem().toString();
         return string;
     }
+
+
+    public void startGame(View view) {
+        String x = getInputOfTextField(R.id.playerXInput);
+        String o = getInputOfTextField(R.id.playerOInput);
+        Game game =new  Game(x,o);
+        String first = getItemSelected(R.id.firstPlayer);
+        if (first.equals("X")) {
+            game.setWhoPlaysFirst('x');
+        }
+        if (first.equals("O")) {
+            game.setWhoPlaysFirst('o');
+        }
+    }
+
+        public void move(View view){
+            int row= Integer.parseInt(getInputOfTextField(R.id.rowInput));
+            int col = Integer.parseInt(getInputOfTextField(R.id.columnInput));
+            game.move(row,col);
+
+            for(int i =0; i <3;i++){
+                for(int j =0; j <3;j++){
+                    setContentsOfTextView(R.id.gameBoardOutput, Character.toString(game.getBoard()[i][j]));
+                }
+        }
+            setContentsOfTextView(R.id.gameStatusOutput, game.getStatus());
+    }
+
+
+
 
     /* Hints on controller methods:
      *
