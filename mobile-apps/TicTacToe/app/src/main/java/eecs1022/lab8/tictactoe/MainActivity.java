@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
      */
     Game game = new Game("","");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        String output =""+game.getBoard()[0][0]+" "+game.getBoard()[0][1]+" "+game.getBoard()[0][2]+"\r\n"+
+                game.getBoard()[1][0]+" "+game.getBoard()[1][1]+" "+game.getBoard()[1][2]+"\r\n"+
+                game.getBoard()[2][0]+" "+game.getBoard()[2][1]+" "+game.getBoard()[2][2];
 
-        /* Hint: How do you display the initial status to the output textview
-         * when the app is first launched?
-         */
+        TextView boardOut = (TextView)findViewById(R.id.boardOutput);
+        boardOut.setText(output);
 
     }
 
@@ -57,17 +60,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void startGame(View view) {
-        String x = getInputOfTextField(R.id.playerXInput);
-        String o = getInputOfTextField(R.id.playerOInput);
-        Game game =new  Game(x,o);
-        String first = getItemSelected(R.id.firstPlayer);
+        String x = getInputOfTextField(R.id.xInput);
+        String o = getInputOfTextField(R.id.oInput);
+         game = new Game(x,o);
+
+        String first = getItemSelected(R.id.firstPlayerInput);
+
         if (first.equals("X")) {
             game.setWhoPlaysFirst('x');
         }
-        if (first.equals("O")) {
+        else if (first.equals("O")) {
             game.setWhoPlaysFirst('o');
         }
+        String output =""+game.getBoard()[0][0]+" "+game.getBoard()[0][1]+" "+game.getBoard()[0][2]+"\r\n"+
+                game.getBoard()[1][0]+" "+game.getBoard()[1][1]+" "+game.getBoard()[1][2]+"\r\n"+
+                game.getBoard()[2][0]+" "+game.getBoard()[2][1]+" "+game.getBoard()[2][2];
+        game.getCurrentPlayer();
+        setContentsOfTextView(R.id.boardOutput, output);
+        setContentsOfTextView(R.id.statusOutput, game.getStatus());
+
     }
 
         public void move(View view){
@@ -75,13 +88,19 @@ public class MainActivity extends AppCompatActivity {
             int col = Integer.parseInt(getInputOfTextField(R.id.columnInput));
             game.move(row,col);
 
-            for(int i =0; i <3;i++){
-                for(int j =0; j <3;j++){
-                    setContentsOfTextView(R.id.gameBoardOutput, Character.toString(game.getBoard()[i][j]));
-                }
-        }
-            setContentsOfTextView(R.id.gameStatusOutput, game.getStatus());
+            setContentsOfTextView(R.id.statusOutput, game.getStatus());
+
+            String output =""+game.getBoard()[0][0]+" "+game.getBoard()[0][1]+" "+game.getBoard()[0][2]+"\r\n"+
+                    game.getBoard()[1][0]+" "+game.getBoard()[1][1]+" "+game.getBoard()[1][2]+"\r\n"+
+                    game.getBoard()[2][0]+" "+game.getBoard()[2][1]+" "+game.getBoard()[2][2];
+                    game.getCurrentPlayer();
+
+                    setContentsOfTextView(R.id.boardOutput, output);
+
+
+
     }
+}
 
 
 
@@ -104,4 +123,3 @@ public class MainActivity extends AppCompatActivity {
      *    + Then, invoke the relevant method(s) on the shared game object.
      *    + Finally, display the expected output of the game (i.e., board and status) to the ouptut textview.
      */
-}
