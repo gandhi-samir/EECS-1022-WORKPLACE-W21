@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     /* Hint: How do you share the same game object between button clicks
      * (attached with controller methods) of the app?
      */
-    Game game = new Game("","");
 
+    Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        String output =""+game.getBoard()[0][0]+" "+game.getBoard()[0][1]+" "+game.getBoard()[0][2]+"\r\n"+
-                game.getBoard()[1][0]+" "+game.getBoard()[1][1]+" "+game.getBoard()[1][2]+"\r\n"+
-                game.getBoard()[2][0]+" "+game.getBoard()[2][1]+" "+game.getBoard()[2][2];
 
-        TextView boardOut = (TextView)findViewById(R.id.boardOutput);
-        boardOut.setText(output);
 
     }
 
