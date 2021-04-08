@@ -20,10 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
     Game game;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView tv1 = (TextView)findViewById(R.id.statusOutput);
+        tv1.setText("No Game has Been Started");
 
 
 
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 game.getBoard()[2][0]+" "+game.getBoard()[2][1]+" "+game.getBoard()[2][2];
         game.getCurrentPlayer();
         setContentsOfTextView(R.id.boardOutput, output);
-        setContentsOfTextView(R.id.statusOutput, game.getStatus());
+        setContentsOfTextView(R.id.statusOutput, "Game Status: "+game.getStatus());
 
     }
 
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             int col = Integer.parseInt(getInputOfTextField(R.id.columnInput));
             game.move(row,col);
 
-            setContentsOfTextView(R.id.statusOutput, game.getStatus());
+            setContentsOfTextView(R.id.statusOutput, "Game Status: "+game.getStatus());
 
             String output =""+game.getBoard()[0][0]+" "+game.getBoard()[0][1]+" "+game.getBoard()[0][2]+"\r\n"+
                     game.getBoard()[1][0]+" "+game.getBoard()[1][1]+" "+game.getBoard()[1][2]+"\r\n"+
